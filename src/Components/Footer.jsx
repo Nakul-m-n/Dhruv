@@ -5,6 +5,7 @@ const Footer = () => {
     { src: "/images/L1.png", alt: "L1" },
     { src: "/images/L2.png", alt: "L2" },
     { src: "/images/L3.png", alt: "L3" },
+    { src: "/images/L4.png", alt: "L4" },
   ];
 
   return (
