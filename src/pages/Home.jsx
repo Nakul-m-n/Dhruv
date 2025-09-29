@@ -8,6 +8,7 @@ import Sponsors from "../sections/Sponsors";
 import About from "../sections/About";
 import Footer from "../components/Footer";
 import IVA from "../assets/images/eva.png";
+import ContactSection from "../sections/Contacts";
 
 const Home = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -89,6 +90,9 @@ const Home = () => {
         </section>
         <section id="about">
           <About />
+        </section>
+        <section id="contact">
+          <ContactSection/>
         </section>
       </main>
 

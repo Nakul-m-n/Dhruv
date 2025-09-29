@@ -12,16 +12,18 @@ const About = () => {
         <div className="about-content">
           <div className="about-card">
             <h3>🌌 Our Mission</h3>
-            <p>
+            <p>hmyoyd15ify34lfmm2jh
+
               We aim to innovate and inspire through technology, creating
               experiences that leave a lasting impact.
             </p>
           </div>
 
+
           <div className="about-card">
             <h3>🚀 Our Vision</h3>
-            <p>
-              To build a future where creativity and innovation connect people
+            <p> 
+               To build a future where creativity and innovation connect people
               across the world seamlessly.
             </p>
           </div>
@@ -31,6 +33,9 @@ const About = () => {
             <p>
               Collaboration, integrity, and excellence guide us in every step we
               take toward building the extraordinary.
+
+
+
             </p>
           </div>
         </div>

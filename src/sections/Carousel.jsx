@@ -1,218 +1,326 @@
 import React, { useEffect, useState } from "react";
-import { X, Clock, Calendar, MapPin } from "lucide-react";
+import { X, Clock, Calendar, MapPin, ExternalLink } from "lucide-react";
 
 const scheduleData = [
   {
     day: "Day 1",
     date: "9th October 2025",
+    inauguration: {
+      time: "9:45 AM - 12:00 PM",
+      title: "Inauguration",
+      description: "Grand opening ceremony with keynote speakers and special guests",
+      venue: "Main Auditorium"
+    },
     events: [
-      { 
-        time: "9:00 AM - 12:00 PM", 
-        title: "Inauguration",
-        description: "Grand opening ceremony with keynote speakers",
-        venue: "Main Auditorium"
-      },
-      { 
-        time: "12:30 PM - 3:30 PM", 
-        title: "Ideathon",
-        description: "Collaborative innovation challenge",
-        venue: "Innovation Hub"
+      {
+        time: "12:00 PM (Oct 9) - 12:00 AM (Oct 10)",
+        title: "Hackathon",
+        description: "24-hour coding marathon to solve real-world problems with innovative solutions",
+        venue: "Tech Hub",
+        hasRegister: true,
+        registerLink: "https://makemypass.com/event/hackathon-2"
       },
       {
-        time: "1:00 PM - 3:00 PM",
-        title: "Workshop 1",
+        time: "12:30 PM - 3:00 PM",
+        title: "Ideathon",
+        description: "Collaborative innovation challenge to pitch creative ideas and solutions",
+        venue: "Innovation Hub",
+        hasRegister: true,
+        registerLink: "https://ideathon-register.example.com"
+      },
+      {
+        time: "12:30 PM - 3:00 PM",
+        title: "Workshops",
         description: "Technical workshops across multiple domains",
         venue: "Various Halls",
-        details: [
-          "AI/ML",
-          "Robotics",
-          "Construction",
-          "Mechanical",
-          "KSRTC Expo",
-          "Medical Expo",
-        ],
+        hasRegister: true,
+        registerLink: "https://workshop-register.example.com",
+        details: ["Robotics", "Web Design", "Construction", "Mechanical"]
       },
-    ],
+      {
+        time: "Full Day",
+        title: "Exhibitions",
+        description: "Explore cutting-edge technology and safety demonstrations",
+        venue: "Exhibition Ground",
+        details: ["Fire and Safety", "KSRTC", "Kamco"]
+      }
+    ]
   },
   {
     day: "Day 2",
     date: "10th October 2025",
     events: [
-      { 
-        time: "9:00 AM - 10:00 AM", 
+      {
+        time: "10:00 AM - 12:00 PM",
         title: "Panel Discussion",
-        description: "Industry experts share insights",
-        venue: "Main stage"
-      },
-      { 
-        time: "2:00 PM - 3:00 PM", 
-        title: "Mentalism",
-        description: "Mind-bending performance",
-        venue: "Main Stage"
-      },
-      { 
-        time: "3:00 PM - 4:00 PM", 
-        title: "Film Promotion",
-        description: "Latest movie previews and discussions",
-        venue: "Main Stage"
-      },
-      { 
-        time: "4:00 PM - 7:00 PM", 
-        title: "Concert ",
-        description: "Pataholic – A Night of Music & Madness! 🎶✨,An electrifying concert full of beats, vibes, and unforgettable energy! ",
+        description: "Industry experts share insights on emerging technologies and innovation",
         venue: "Main Stage"
       },
       {
-        time: "All day",
-        title: "Other Activities",
-        description: "Fun activities throughout the day",
-        venue: "Multiple Locations",
-        details: ["AR/VR", "Offline Games", "Soppy Football", "Food Stall"],
+        time: "2:00 PM - 3:00 PM",
+        title: "Mentalism",
+        description: "Mind-bending performance that will leave you amazed and questioning reality",
+        venue: "Main Stage"
       },
-    ],
+      {
+        time: "3:00 PM - 6:00 PM",
+        title: "Concert",
+        description: "Pataholic – A Night of Music & Madness! 🎶✨ An electrifying concert full of beats, vibes, and unforgettable energy!",
+        venue: "Main Stage"
+      },
+      {
+        time: "Full Day",
+        title: "Exhibitions",
+        description: "Space technology and educational displays",
+        venue: "Exhibition Ground",
+        details: ["ISRO Expo", "School Polytechnic Expo"]
+      }
+    ]
   },
   {
     day: "Day 3",
     date: "11th October 2025",
     events: [
-      { 
-        time: "9:00 AM - 12:00 PM", 
-        title: "Closing Ceremony",
-        description: "Award ceremony and farewell",
-        venue: "Main Auditorium"
+      {
+        time: "9:00 AM - 11:00 AM",
+        title: "Film Promotion",
+        description: "Latest movie previews and celebrity interactions",
+        venue: "Main Stage"
       },
-      { 
-        time: "All day", 
-        title: "Food Fest",
-        description: "Culinary delights from around the world",
-        venue: "Food Court"
-      },
-      { 
-        time: "12:00 PM - 8:00 PM", 
+      {
+        time: "11:00 AM - 6:00 PM",
         title: "Fashion Show",
-        description: "Live music performances",
+        description: "Stunning runway displays featuring talented designers and models",
         venue: "Outdoor Stage"
       },
-      { 
-        time: "All day", 
+      {
+        time: "11:00 AM - 4:00 PM",
         title: "Online Gaming",
-        description: "Competitive gaming tournaments",
-        venue: "Gaming Zone"
-      },
-      { 
-        time: "All day", 
-        title: "Autoshow",
-        description: "Latest automobile exhibitions",
-        venue: "Exhibition Ground"
-      },
-    ],
-  },
+        description: "Competitive gaming tournaments with exciting prizes",
+        venue: "Gaming Zone",
+        hasRegister: true,
+        registerLink: "https://gaming-register.example.com"
+      }
+    ]
+  }
 ];
 
-const EventCard = ({ event }) => {
-  const [isRegistered, setIsRegistered] = useState(false);
-  
-  const handleRegister = (e) => {
-    e.stopPropagation();
-    setIsRegistered(!isRegistered);
-    // Here you would typically make an API call to register/unregister
-    console.log(`${isRegistered ? 'Unregistered from' : 'Registered for'}: ${event.title}`);
-  };
+// Small Event Detail Modal
+const EventDetailModal = ({ isOpen, onClose, event }) => {
+  if (!isOpen || !event) return null;
 
   return (
-    <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-6 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-1">
-      <div className="flex items-start justify-between mb-4">
-        <h4 className="text-xl font-bold text-cyan-100 flex-1">{event.title}</h4>
-        {event.time && (
-          <div className="flex items-center text-cyan-300/80 text-sm ml-4">
-            <Clock className="w-4 h-4 mr-1" />
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+      <div 
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        onClick={onClose}
+      />
+      
+      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl max-w-md w-full border border-cyan-500/40 shadow-2xl p-6">
+        <div className="flex items-start justify-between mb-4">
+          <h4 className="text-2xl font-bold text-cyan-100">{event.title}</h4>
+          <button
+            onClick={onClose}
+            className="p-1.5 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 transition-all"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="space-y-3 mb-6">
+          <div className="flex items-center text-cyan-300/80 text-sm">
+            <Clock className="w-4 h-4 mr-2" />
             {event.time}
           </div>
+
+          {event.venue && (
+            <div className="flex items-center text-cyan-400/80 text-sm">
+              <MapPin className="w-4 h-4 mr-2" />
+              {event.venue}
+            </div>
+          )}
+
+          {event.description && (
+            <p className="text-slate-300 text-sm leading-relaxed">{event.description}</p>
+          )}
+
+          {event.details && (
+            <div>
+              <p className="text-cyan-200/80 text-sm font-medium mb-2">Includes:</p>
+              <div className="flex flex-wrap gap-2">
+                {event.details.map((detail, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 bg-cyan-500/20 text-cyan-200 text-xs rounded-full border border-cyan-500/30"
+                  >
+                    {detail}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {event.hasRegister && (
+          <a
+            href={event.registerLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+          >
+            Register Now
+            <ExternalLink className="w-4 h-4" />
+          </a>
         )}
-      </div>
-      
-      {event.description && (
-        <p className="text-slate-300 mb-3 text-sm leading-relaxed">{event.description}</p>
-      )}
-      
-      {event.venue && (
-        <div className="flex items-center text-cyan-400/80 text-sm mb-3">
-          <MapPin className="w-4 h-4 mr-2" />
-          {event.venue}
-        </div>
-      )}
-      
-      {event.details && (
-        <div className="mt-4 mb-4">
-          <p className="text-cyan-200/80 text-sm font-medium mb-2">Activities:</p>
-          <div className="flex flex-wrap gap-2">
-            {event.details.map((detail, i) => (
-              <span
-                key={i}
-                className="px-3 py-1 bg-cyan-500/20 text-cyan-200 text-xs rounded-full border border-cyan-500/30"
-              >
-                {detail}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-      
-      <div className="pt-4 border-t border-cyan-500/20">
-        <button
-          onClick={handleRegister}
-          className={`w-full py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-300 ${
-            isRegistered
-              ? 'bg-green-500/20 border border-green-500/50 text-green-300 hover:bg-green-500/30'
-              : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg hover:shadow-cyan-500/30'
-          }`}
-        >
-          {isRegistered ? '✓ Registered' : 'Register Now'}
-        </button>
+
+        {!event.hasRegister && (
+          <button
+            onClick={onClose}
+            className="w-full py-3 px-4 rounded-lg font-semibold text-sm bg-gray-700/50 hover:bg-gray-700/70 text-gray-300 border border-gray-600/50 transition-all duration-300"
+          >
+            Close
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
+// Small Event Card
+const SmallEventCard = ({ event, onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-4 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer hover:scale-105"
+    >
+      <div className="flex items-start justify-between mb-2">
+        <h5 className="text-base font-bold text-cyan-100 flex-1">{event.title}</h5>
+        {event.time && (
+          <div className="flex items-center text-cyan-300/80 text-xs ml-2 flex-shrink-0">
+            <Clock className="w-3 h-3 mr-1" />
+            <span className="text-xs">{event.time.split(' - ')[0]}</span>
+          </div>
+        )}
+      </div>
+      
+      {event.description && (
+        <p className="text-slate-400 text-xs mb-2 line-clamp-2">{event.description}</p>
+      )}
+      
+      {event.details && (
+        <div className="flex flex-wrap gap-1 mb-2">
+          {event.details.slice(0, 2).map((detail, i) => (
+            <span
+              key={i}
+              className="px-2 py-0.5 bg-cyan-500/20 text-cyan-200 text-xs rounded-full"
+            >
+              {detail}
+            </span>
+          ))}
+          {event.details.length > 2 && (
+            <span className="px-2 py-0.5 text-cyan-300/60 text-xs">
+              +{event.details.length - 2} more
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className="text-cyan-400/60 text-xs mt-2">Click for details →</div>
+    </div>
+  );
+};
+
 const Modal = ({ isOpen, onClose, day }) => {
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   if (!isOpen || !day) return null;
 
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+    setDetailModalOpen(true);
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div 
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      
-      <div className="relative bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-xl border border-cyan-500/40 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-        <div className="sticky top-0 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-sm border-b border-cyan-500/30 p-6 flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              {day.day}
-            </h2>
-            <div className="flex items-center text-cyan-300/80 mt-1">
-              <Calendar className="w-4 h-4 mr-2" />
-              {day.date}
+    <>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div 
+          className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+          onClick={onClose}
+        />
+        
+        <div className="relative bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-xl border border-cyan-500/40 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+          <div className="sticky top-0 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-sm border-b border-cyan-500/30 p-6 flex items-center justify-between">
+            <div>
+              <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                {day.day}
+              </h2>
+              <div className="flex items-center text-cyan-300/80 mt-1">
+                <Calendar className="w-4 h-4 mr-2" />
+                {day.date}
+              </div>
             </div>
+            
+            <button
+              onClick={onClose}
+              className="p-2 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 transition-all duration-200"
+            >
+              <X className="w-6 h-6" />
+            </button>
           </div>
           
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 transition-all duration-200"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-        
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)] custom-scrollbar">
-          <div className="grid gap-4 md:gap-6">
-            {day.events.map((event, idx) => (
-              <EventCard key={idx} event={event} />
-            ))}
+          <div className="overflow-y-auto max-h-[calc(90vh-140px)] custom-scrollbar">
+            {/* Top Segment - Inauguration (Day 1 only) */}
+            {day.inauguration && (
+              <div className="p-6 border-b border-cyan-500/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10">
+                <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-cyan-500/40 rounded-xl p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <h4 className="text-2xl font-bold text-cyan-100">{day.inauguration.title}</h4>
+                    <div className="flex items-center text-cyan-300/80 text-sm ml-4">
+                      <Clock className="w-4 h-4 mr-1" />
+                      {day.inauguration.time}
+                    </div>
+                  </div>
+                  
+                  <p className="text-slate-300 mb-3 leading-relaxed">{day.inauguration.description}</p>
+                  
+                  <div className="flex items-center text-cyan-400/80 text-sm">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    {day.inauguration.venue}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Bottom Segment - Events */}
+            <div className="p-6">
+              <h4 className="text-xl font-bold text-cyan-200 mb-4">
+                {day.inauguration ? 'Other Events' : 'Events'}
+              </h4>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {day.events.map((event, idx) => (
+                  <SmallEventCard
+                    key={idx}
+                    event={event}
+                    onClick={() => handleEventClick(event)}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Event Detail Modal */}
+      <EventDetailModal
+        isOpen={detailModalOpen}
+        onClose={() => {
+          setDetailModalOpen(false);
+          setSelectedEvent(null);
+        }}
+        event={selectedEvent}
+      />
+    </>
   );
 };
 
@@ -317,7 +425,7 @@ const ScheduleCarousel = () => {
                               )}
                             </div>
                             {event.description && (
-                              <p className="text-cyan-100/60 text-xs sm:text-sm">{event.description}</p>
+                              <p className="text-cyan-100/60 text-xs sm:text-sm line-clamp-2">{event.description}</p>
                             )}
                           </div>
                         ))}

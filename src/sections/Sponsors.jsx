@@ -1,9 +1,17 @@
 import React from "react";
+import oberon from "../assets/images/sponsors/oberon.png"
+import isro from "../assets/images/sponsors/isro.png"
+import flora from "../assets/images/sponsors/flora.png"
+import ife from "../assets/images/sponsors/ife.png"
+
+
 
 // Split sponsors into two categories with image paths
 const mainSponsors = [
-  { name: "TechCorp", image: "/assets/sponsors/techcorp-logo.png" },
-  { name: "InnovateAI", image: "/assets/sponsors/innovateai-logo.png" }
+  { name: "OberonMall", image: oberon },
+  { name: "ISRO", image: isro },
+  {name:"Flora",image:flora},
+  {name:"Ife",image:ife}
 ]; // Top tier sponsors
 
 const otherSponsors = [
@@ -47,20 +55,16 @@ const SponsorCard = ({ sponsor, idx, isMain = false }) => (
       <div className="absolute -inset-1 rounded-3xl border border-purple-500/20 animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="relative z-10 text-center flex flex-col justify-center h-full">
-        {/* Image Container */}
-        <div className={`mx-auto mb-3 sm:mb-4 md:mb-6 rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-500/20 backdrop-blur-sm border-2 border-cyan-400/30 group-hover:border-cyan-400/60 flex items-center justify-center overflow-hidden transition-all duration-500 ${
+        {/* Image Container - Full Size Rectangle */}
+        <div className={`mx-auto mb-3 sm:mb-4 md:mb-6 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-purple-500/20 backdrop-blur-sm border-2 border-cyan-400/30 group-hover:border-cyan-400/60 flex items-center justify-center overflow-hidden transition-all duration-500 ${
           isMain 
-            ? 'w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24' 
-            : 'w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20'
+            ? 'w-full max-w-[280px] h-32 sm:h-40 md:h-48' 
+            : 'w-full max-w-[200px] h-24 sm:h-28 md:h-32'
         }`}>
           <img
             src={sponsor.image}
             alt={`${sponsor.name} logo`}
-            className={`object-contain transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 ${
-              isMain 
-                ? 'w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16' 
-                : 'w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12'
-            }`}
+            className="w-full h-full object-contain p-4 transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
             onError={(e) => {
               // Fallback to initial letter if image fails to load
               e.target.style.display = 'none';
@@ -71,8 +75,8 @@ const SponsorCard = ({ sponsor, idx, isMain = false }) => (
           <div 
             className={`hidden items-center justify-center w-full h-full text-black font-bold bg-gradient-to-br from-cyan-400 to-purple-500 ${
               isMain 
-                ? 'text-lg sm:text-xl md:text-2xl' 
-                : 'text-sm sm:text-lg md:text-xl'
+                ? 'text-3xl sm:text-4xl md:text-5xl' 
+                : 'text-2xl sm:text-3xl md:text-4xl'
             }`}
           >
             {sponsor.name.charAt(0)}
