@@ -1,24 +1,42 @@
 import React from "react";
-import oberon from "../assets/images/sponsors/oberon.png"
-import isro from "../assets/images/sponsors/isro.png"
-import flora from "../assets/images/sponsors/flora.png"
-import ife from "../assets/images/sponsors/ife.png"
+import oberonimg from "../assets/images/sponsors/oberon.png"
+import isroimg from "../assets/images/sponsors/isro.png"
+import floraimg from "../assets/images/sponsors/flora.png"
+import ifeimg from "../assets/images/sponsors/ife.png"
+import ksumimg from "../assets/images/sponsors/ksum1.png"
+import fragomenimg from  "../assets/images/sponsors/fragomen.png"
+import dicimg from  "../assets/images/sponsors/DIC.png"
+import kamcoimg from  "../assets/images/sponsors/kamco.png"
+import cmrlimg from  "../assets/images/sponsors/cmrl1.png"
 
-
+// Mock sponsor images - replace these with your actual imports
+const oberon = oberonimg;
+const isro = isroimg;
+const flora = floraimg;
+const ife = ifeimg;
+const ksum = ksumimg;
+const fragomen = fragomenimg;
+const dic = dicimg;
+const kamco = kamcoimg;
+const cmrl = cmrlimg;
 
 // Split sponsors into two categories with image paths
 const mainSponsors = [
   { name: "OberonMall", image: oberon },
   { name: "ISRO", image: isro },
-  {name:"Flora",image:flora},
-  {name:"Ife",image:ife}
+  { name: "Flora", image: flora },
+  { name: "Ife", image: ife },
+  {name :"unknown"}
 ]; // Top tier sponsors
 
 const otherSponsors = [
-  { name: "RoboTech", image: "/assets/sponsors/robotech-logo.png" },
-  { name: "FutureCode", image: "/assets/sponsors/futurecode-logo.png" },
-  { name: "DataFlow", image: "/assets/sponsors/dataflow-logo.png" },
-  { name: "CloudNext", image: "/assets/sponsors/cloudnext-logo.png" }
+  { name: "Kerala Startup Mission", image: ksum },
+  { name: "fragomen", image: fragomen },
+  { name: "DIC", image: dic },
+  { name: "Kamco", image: kamco },
+  { name: "CMRL", image: cmrl },
+  {name :"unknown"},
+  {name:"unknown2"}
 ]; // Additional sponsors
 
 const SponsorCard = ({ sponsor, idx, isMain = false }) => (
@@ -28,82 +46,62 @@ const SponsorCard = ({ sponsor, idx, isMain = false }) => (
       animationDelay: `${idx * 0.2}s`,
     }}
   >
-    <div className={`relative bg-gradient-to-br from-gray-900/40 via-black/60 to-gray-900/40 backdrop-blur-xl border border-cyan-500/30 rounded-3xl shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 overflow-hidden ${
+    <div className={`relative backdrop-blur-xl bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-purple-500/20 border-2 border-cyan-400/30 rounded-3xl shadow-2xl shadow-cyan-500/20 hover:shadow-cyan-400/40 hover:border-cyan-300/50 transition-all duration-500 overflow-hidden ${
       isMain 
-        ? 'p-6 sm:p-8 md:p-12 min-h-[200px] sm:min-h-[240px] md:min-h-[280px]' 
-        : 'p-4 sm:p-6 md:p-8 min-h-[160px] sm:min-h-[190px] md:min-h-[220px]'
+        ? 'p-6 sm:p-8 md:p-12 h-[200px] sm:h-[240px] md:h-[280px]' 
+        : 'p-4 sm:p-6 md:p-8 h-[160px] sm:h-[190px] md:h-[220px]'
     }`}>
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl" />
+      {/* Glassmorphism overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700 rounded-3xl" />
 
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500">
-        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse" />
+      {/* Animated border glow */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-50 transition-opacity duration-500">
+        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 h-px bg-gradient-to-r from-transparent via-white to-transparent animate-pulse" />
         <div
-          className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-pulse"
+          className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 h-px bg-gradient-to-r from-transparent via-white to-transparent animate-pulse"
           style={{ animationDelay: "0.5s" }}
         />
         <div
-          className="absolute top-2 sm:top-4 bottom-2 sm:bottom-4 left-2 sm:left-4 w-px bg-gradient-to-b from-transparent via-pink-400 to-transparent animate-pulse"
+          className="absolute top-2 sm:top-4 bottom-2 sm:bottom-4 left-2 sm:left-4 w-px bg-gradient-to-b from-transparent via-white to-transparent animate-pulse"
           style={{ animationDelay: "0.25s" }}
         />
         <div
-          className="absolute top-2 sm:top-4 bottom-2 sm:bottom-4 right-2 sm:right-4 w-px bg-gradient-to-b from-transparent via-cyan-400 to-transparent animate-pulse"
+          className="absolute top-2 sm:top-4 bottom-2 sm:bottom-4 right-2 sm:right-4 w-px bg-gradient-to-b from-transparent via-white to-transparent animate-pulse"
           style={{ animationDelay: "0.75s" }}
         />
       </div>
 
-      <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-cyan-400/50 transition-all duration-500" />
-      <div className="absolute -inset-1 rounded-3xl border border-purple-500/20 animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-white/60 transition-all duration-500" />
 
       <div className="relative z-10 text-center flex flex-col justify-center h-full">
-        {/* Image Container - Full Size Rectangle */}
-        <div className={`mx-auto mb-3 sm:mb-4 md:mb-6 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-purple-500/20 backdrop-blur-sm border-2 border-cyan-400/30 group-hover:border-cyan-400/60 flex items-center justify-center overflow-hidden transition-all duration-500 ${
-          isMain 
-            ? 'w-full max-w-[280px] h-32 sm:h-40 md:h-48' 
-            : 'w-full max-w-[200px] h-24 sm:h-28 md:h-32'
-        }`}>
-          <img
-            src={sponsor.image}
-            alt={`${sponsor.name} logo`}
-            className="w-full h-full object-contain p-4 transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
-            onError={(e) => {
-              // Fallback to initial letter if image fails to load
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'flex';
-            }}
-          />
-          {/* Fallback initial letter */}
-          <div 
-            className={`hidden items-center justify-center w-full h-full text-black font-bold bg-gradient-to-br from-cyan-400 to-purple-500 ${
-              isMain 
-                ? 'text-3xl sm:text-4xl md:text-5xl' 
-                : 'text-2xl sm:text-3xl md:text-4xl'
-            }`}
-          >
-            {sponsor.name.charAt(0)}
-          </div>
-        </div>
-
-        <h3 className={`font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-300 group-hover:from-white group-hover:to-cyan-200 transition-all duration-300 ${
-          isMain 
-            ? 'text-xl sm:text-2xl md:text-3xl lg:text-4xl' 
-            : 'text-lg sm:text-xl md:text-2xl lg:text-3xl'
-        }`}>
-          {sponsor.name}
-        </h3>
-
-        <div className={`mt-2 sm:mt-3 md:mt-4 text-cyan-200/60 tracking-widest ${
-          isMain 
-            ? 'text-xs sm:text-sm md:text-base' 
-            : 'text-xs sm:text-sm'
-        }`}>
-          ── COSMIC PARTNER ──
+        {/* Image - Fully fitted without inner border */}
+        <img
+          src={sponsor.image}
+          alt={`${sponsor.name} logo`}
+          className="w-full h-full object-contain p-4 transition-all duration-500 group-hover:scale-110 group-hover:brightness-110 filter drop-shadow-lg"
+          onError={(e) => {
+            // Fallback to initial letter if image fails to load
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'flex';
+          }}
+        />
+        {/* Fallback initial letter */}
+        <div 
+          className={`hidden items-center justify-center w-full h-full backdrop-blur-xl bg-white/30 rounded-2xl text-white font-bold ${
+            isMain 
+              ? 'text-3xl sm:text-4xl md:text-5xl' 
+              : 'text-2xl sm:text-3xl md:text-4xl'
+          }`}
+        >
+          {sponsor.name.charAt(0)}
         </div>
       </div>
 
+      {/* Floating particles */}
       {[...Array(6)].map((_, i) => (
         <div
           key={`card-particle-${idx}-${i}`}
-          className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-60 animate-float-particle"
+          className="absolute w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-70 animate-float-particle"
           style={{
             top: `${20 + Math.random() * 60}%`,
             left: `${10 + Math.random() * 80}%`,
@@ -208,9 +206,9 @@ const Sponsors = () => {
         </p>
       </div>
 
-      <div className="w-full max-w-7xl relative z-10 px-4 sm:px-6">
+      <div className="  w-full max-w-7xl relative z-10 px-4 sm:px-6">
         {/* Main Sponsors Section - Responsive Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16">
+        <div className="  grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16">
           {mainSponsors.map((sponsor, idx) => (
             <SponsorCard key={sponsor.name} sponsor={sponsor} idx={idx} isMain={true} />
           ))}
@@ -227,10 +225,12 @@ const Sponsors = () => {
           <div className="flex-1 h-px bg-gradient-to-l from-transparent via-purple-500/30 to-transparent"></div>
         </div>
 
-        {/* Other Sponsors Section - Responsive Layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+        {/* Other Sponsors Section - Centered Flex Layout */}
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
           {otherSponsors.map((sponsor, idx) => (
-            <SponsorCard key={sponsor.name} sponsor={sponsor} idx={idx + mainSponsors.length} isMain={false} />
+            <div key={sponsor.name} className="w-[calc(50%-6px)] sm:w-[calc(50%-8px)] md:w-[calc(25%-18px)] max-w-[280px]">
+              <SponsorCard sponsor={sponsor} idx={idx + mainSponsors.length} isMain={false} />
+            </div>
           ))}
         </div>
       </div>
