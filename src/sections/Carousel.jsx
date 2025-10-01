@@ -9,7 +9,8 @@ const scheduleData = [
       time: "9:45 AM - 12:00 PM",
       title: "Inauguration",
       description: "Grand opening ceremony with keynote speakers and special guests",
-      venue: "Main Auditorium"
+      venue: "Main Auditorium",
+      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop"
     },
     events: [
       {
@@ -18,7 +19,8 @@ const scheduleData = [
         description: "24-hour coding marathon to solve real-world problems with innovative solutions",
         venue: "Tech Hub",
         hasRegister: true,
-        registerLink: "https://makemypass.com/event/hackathon-2"
+        registerLink: "https://makemypass.com/event/hackathon-2",
+        image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=400&fit=crop"
       },
       {
         time: "12:30 PM - 3:00 PM",
@@ -26,7 +28,8 @@ const scheduleData = [
         description: "Collaborative innovation challenge to pitch creative ideas and solutions",
         venue: "Innovation Hub",
         hasRegister: true,
-        registerLink: "https://ideathon-register.example.com"
+        registerLink: "https://ideathon-register.example.com",
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=400&fit=crop"
       },
       {
         time: "12:30 PM - 3:00 PM",
@@ -35,14 +38,16 @@ const scheduleData = [
         venue: "Various Halls",
         hasRegister: true,
         registerLink: "https://workshop-register.example.com",
-        details: ["Robotics", "Web Design", "Construction", "Mechanical"]
+        details: ["Robotics", "Web Design", "Construction", "Mechanical"],
+        image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=400&fit=crop"
       },
       {
         time: "Full Day",
         title: "Exhibitions",
         description: "Explore cutting-edge technology and safety demonstrations",
         venue: "Exhibition Ground",
-        details: ["Fire and Safety", "KSRTC", "Kamco"]
+        details: ["Fire and Safety", "KSRTC", "Kamco"],
+        image: "https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?w=800&h=400&fit=crop"
       }
     ]
   },
@@ -54,26 +59,30 @@ const scheduleData = [
         time: "10:00 AM - 12:00 PM",
         title: "Panel Discussion",
         description: "Industry experts share insights on emerging technologies and innovation",
-        venue: "Main Stage"
+        venue: "Main Stage",
+        image: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&h=400&fit=crop"
       },
       {
         time: "2:00 PM - 3:00 PM",
         title: "Mentalism",
         description: "Mind-bending performance that will leave you amazed and questioning reality",
-        venue: "Main Stage"
+        venue: "Main Stage",
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop"
       },
       {
         time: "3:00 PM - 6:00 PM",
         title: "Concert",
-        description: "Pataholic – A Night of Music & Madness! 🎶✨ An electrifying concert full of beats, vibes, and unforgettable energy!",
-        venue: "Main Stage"
+        description: "Thakida – A Night of Music & Madness! 🎶✨ An electrifying concert full of beats, vibes, and unforgettable energy!",
+        venue: "Main Stage",
+        image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=400&fit=crop"
       },
       {
         time: "Full Day",
         title: "Exhibitions",
         description: "Space technology and educational displays",
         venue: "Exhibition Ground",
-        details: ["ISRO Expo", "School Polytechnic Expo"]
+        details: ["ISRO Expo", "School Polytechnic Expo"],
+        image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&h=400&fit=crop"
       }
     ]
   },
@@ -85,13 +94,15 @@ const scheduleData = [
         time: "9:00 AM - 11:00 AM",
         title: "Film Promotion",
         description: "Latest movie previews and celebrity interactions",
-        venue: "Main Stage"
+        venue: "Main Stage",
+        image: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=400&fit=crop"
       },
       {
         time: "11:00 AM - 6:00 PM",
         title: "Fashion Show",
         description: "Stunning runway displays featuring talented designers and models",
-        venue: "Outdoor Stage"
+        venue: "Outdoor Stage",
+        image: "https://png.pngtree.com/background/20230606/original/pngtree-fashion-show-with-models-on-the-runway-picture-image_2882850.jpg"
       },
       {
         time: "11:00 AM - 4:00 PM",
@@ -99,7 +110,8 @@ const scheduleData = [
         description: "Competitive gaming tournaments with exciting prizes",
         venue: "Gaming Zone",
         hasRegister: true,
-        registerLink: "https://gaming-register.example.com"
+        registerLink: "https://gaming-register.example.com",
+        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=400&fit=crop"
       }
     ]
   }
@@ -116,71 +128,84 @@ const EventDetailModal = ({ isOpen, onClose, event }) => {
         onClick={onClose}
       />
       
-      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl max-w-md w-full border border-cyan-500/40 shadow-2xl p-6">
-        <div className="flex items-start justify-between mb-4">
-          <h4 className="text-2xl font-bold text-cyan-100">{event.title}</h4>
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 transition-all"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <div className="space-y-3 mb-6">
-          <div className="flex items-center text-cyan-300/80 text-sm">
-            <Clock className="w-4 h-4 mr-2" />
-            {event.time}
+      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl max-w-md w-full border border-cyan-500/40 shadow-2xl overflow-hidden">
+        {event.image && (
+          <div className="relative w-full h-48 border-b-2 border-cyan-500/40">
+            <img 
+              src={event.image} 
+              alt={event.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
+          </div>
+        )}
+        
+        <div className="p-6">
+          <div className="flex items-start justify-between mb-4">
+            <h4 className="text-2xl font-bold text-cyan-100">{event.title}</h4>
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 transition-all"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          {event.venue && (
-            <div className="flex items-center text-cyan-400/80 text-sm">
-              <MapPin className="w-4 h-4 mr-2" />
-              {event.venue}
+          <div className="space-y-3 mb-6">
+            <div className="flex items-center text-cyan-300/80 text-sm">
+              <Clock className="w-4 h-4 mr-2" />
+              {event.time}
             </div>
-          )}
 
-          {event.description && (
-            <p className="text-slate-300 text-sm leading-relaxed">{event.description}</p>
-          )}
-
-          {event.details && (
-            <div>
-              <p className="text-cyan-200/80 text-sm font-medium mb-2">Includes:</p>
-              <div className="flex flex-wrap gap-2">
-                {event.details.map((detail, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-cyan-500/20 text-cyan-200 text-xs rounded-full border border-cyan-500/30"
-                  >
-                    {detail}
-                  </span>
-                ))}
+            {event.venue && (
+              <div className="flex items-center text-cyan-400/80 text-sm">
+                <MapPin className="w-4 h-4 mr-2" />
+                {event.venue}
               </div>
-            </div>
+            )}
+
+            {event.description && (
+              <p className="text-slate-300 text-sm leading-relaxed">{event.description}</p>
+            )}
+
+            {event.details && (
+              <div>
+                <p className="text-cyan-200/80 text-sm font-medium mb-2">Includes:</p>
+                <div className="flex flex-wrap gap-2">
+                  {event.details.map((detail, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-cyan-500/20 text-cyan-200 text-xs rounded-full border border-cyan-500/30"
+                    >
+                      {detail}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {event.hasRegister && (
+            <a
+              href={event.registerLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+            >
+              Register Now
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          )}
+
+          {!event.hasRegister && (
+            <button
+              onClick={onClose}
+              className="w-full py-3 px-4 rounded-lg font-semibold text-sm bg-gray-700/50 hover:bg-gray-700/70 text-gray-300 border border-gray-600/50 transition-all duration-300"
+            >
+              Close
+            </button>
           )}
         </div>
-
-        {event.hasRegister && (
-          <a
-            href={event.registerLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
-          >
-            Register Now
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        )}
-
-        {!event.hasRegister && (
-          <button
-            onClick={onClose}
-            className="w-full py-3 px-4 rounded-lg font-semibold text-sm bg-gray-700/50 hover:bg-gray-700/70 text-gray-300 border border-gray-600/50 transition-all duration-300"
-          >
-            Close
-          </button>
-        )}
       </div>
     </div>
   );
@@ -191,41 +216,54 @@ const SmallEventCard = ({ event, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-4 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer hover:scale-105"
+      className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-cyan-500/30 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer hover:scale-105"
     >
-      <div className="flex items-start justify-between mb-2">
-        <h5 className="text-base font-bold text-cyan-100 flex-1">{event.title}</h5>
-        {event.time && (
-          <div className="flex items-center text-cyan-300/80 text-xs ml-2 flex-shrink-0">
-            <Clock className="w-3 h-3 mr-1" />
-            <span className="text-xs">{event.time.split(' - ')[0]}</span>
-          </div>
-        )}
-      </div>
-      
-      {event.description && (
-        <p className="text-slate-400 text-xs mb-2 line-clamp-2">{event.description}</p>
-      )}
-      
-      {event.details && (
-        <div className="flex flex-wrap gap-1 mb-2">
-          {event.details.slice(0, 2).map((detail, i) => (
-            <span
-              key={i}
-              className="px-2 py-0.5 bg-cyan-500/20 text-cyan-200 text-xs rounded-full"
-            >
-              {detail}
-            </span>
-          ))}
-          {event.details.length > 2 && (
-            <span className="px-2 py-0.5 text-cyan-300/60 text-xs">
-              +{event.details.length - 2} more
-            </span>
-          )}
+      {event.image && (
+        <div className="relative w-full h-32 border-b-2 border-cyan-500/30">
+          <img 
+            src={event.image} 
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
         </div>
       )}
+      
+      <div className="p-4">
+        <div className="flex items-start justify-between mb-2">
+          <h5 className="text-base font-bold text-cyan-100 flex-1">{event.title}</h5>
+          {event.time && (
+            <div className="flex items-center text-cyan-300/80 text-xs ml-2 flex-shrink-0">
+              <Clock className="w-3 h-3 mr-1" />
+              <span className="text-xs">{event.time.split(' - ')[0]}</span>
+            </div>
+          )}
+        </div>
+        
+        {event.description && (
+          <p className="text-slate-400 text-xs mb-2 line-clamp-2">{event.description}</p>
+        )}
+        
+        {event.details && (
+          <div className="flex flex-wrap gap-1 mb-2">
+            {event.details.slice(0, 2).map((detail, i) => (
+              <span
+                key={i}
+                className="px-2 py-0.5 bg-cyan-500/20 text-cyan-200 text-xs rounded-full"
+              >
+                {detail}
+              </span>
+            ))}
+            {event.details.length > 2 && (
+              <span className="px-2 py-0.5 text-cyan-300/60 text-xs">
+                +{event.details.length - 2} more
+              </span>
+            )}
+          </div>
+        )}
 
-      <div className="text-cyan-400/60 text-xs mt-2">Click for details →</div>
+        <div className="text-cyan-400/60 text-xs mt-2">Click for details →</div>
+      </div>
     </div>
   );
 };
@@ -273,20 +311,33 @@ const Modal = ({ isOpen, onClose, day }) => {
             {/* Top Segment - Inauguration (Day 1 only) */}
             {day.inauguration && (
               <div className="p-6 border-b border-cyan-500/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10">
-                <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-cyan-500/40 rounded-xl p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <h4 className="text-2xl font-bold text-cyan-100">{day.inauguration.title}</h4>
-                    <div className="flex items-center text-cyan-300/80 text-sm ml-4">
-                      <Clock className="w-4 h-4 mr-1" />
-                      {day.inauguration.time}
+                <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-sm border border-cyan-500/40 rounded-xl overflow-hidden">
+                  {day.inauguration.image && (
+                    <div className="relative w-full h-48 border-b-2 border-cyan-500/40">
+                      <img 
+                        src={day.inauguration.image} 
+                        alt={day.inauguration.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
                     </div>
-                  </div>
+                  )}
                   
-                  <p className="text-slate-300 mb-3 leading-relaxed">{day.inauguration.description}</p>
-                  
-                  <div className="flex items-center text-cyan-400/80 text-sm">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    {day.inauguration.venue}
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <h4 className="text-2xl font-bold text-cyan-100">{day.inauguration.title}</h4>
+                      <div className="flex items-center text-cyan-300/80 text-sm ml-4">
+                        <Clock className="w-4 h-4 mr-1" />
+                        {day.inauguration.time}
+                      </div>
+                    </div>
+                    
+                    <p className="text-slate-300 mb-3 leading-relaxed">{day.inauguration.description}</p>
+                    
+                    <div className="flex items-center text-cyan-400/80 text-sm">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      {day.inauguration.venue}
+                    </div>
                   </div>
                 </div>
               </div>

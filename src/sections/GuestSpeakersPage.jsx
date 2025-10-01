@@ -1,44 +1,52 @@
 import React from "react";
 
 // Import your guest images at the top
-import rajeevImg from "../assets/images/rajeev.png";
-import satheesan from "../assets/images/satheesan.png"; 
-import rameshImg from "../assets/images/ramesh.png";
-import kuncheriaImg from "../assets/images/kuncheria.png";
+import rajeevImg from "../assets/images/prajeev.png";
+import hibiImg from "../assets/images/hibi.png"; 
+import rameshImg from "../assets/images/unikrishnan.png";
+import kuncheriaImg from "../assets/images/isacc.png";
+import fazalImg from "../assets/images/fazal.png"
 
 const guestData = [
-  {
-    id: 1,
-    name: "SRI ADV P RAJEEV",
-    title: "HON'BLE MINISTER OF INDUSTRIES, LAW AND COURT, KERALA",
-    image: rajeevImg, 
-    gradientColors: "from-green-400 via-blue-500 to-purple-600"
-  },
-  {
-    id: 2,
-    name: "SRI ADV VD SATHEESAN", 
-    title: "HON'BLE OPPOSITION LEADER OF KERALA",
-    image: satheesan, 
-    gradientColors: "from-purple-400 via-pink-500 to-red-500"
-  },
-  {
-    id: 3,
-    name: "DR RAMESH UNNIKRISHNAN",
-    title: "FORMER DIRECTOR & ADVISOR OF AICTE INDIA", 
-    image: rameshImg, 
-    gradientColors: "from-orange-400 via-red-500 to-pink-500"
-  },
-  {
-    id: 4,
-    name: "DR KUNCHERIA P ISAAC",
-    title: "EDUCATOR AND FORMER VICE CHANCELLOR OF APJKTU",
-    image: kuncheriaImg,
-    gradientColors: "from-pink-400 via-purple-500 to-indigo-600"
-  }
+ {
+  id: 1,
+  name: "SRI ADV P RAJEEV",
+  title: "HON'BLE MINISTER OF INDUSTRIES, LAW AND COURT, KERALA",
+  image: rajeevImg, 
+  gradientColors: "from-green-400 via-blue-500 to-purple-600"
+},
+{
+  id: 2,
+  name: "SRI HIBI EDEN", 
+  title: "HON'BLE MEMBER OF PARLIAMENT, ERNAKULAM",
+  image: hibiImg, 
+  gradientColors: "from-purple-400 via-pink-500 to-red-500"
+},
+{
+  id: 3,
+  name: "DR RAMESH UNNIKRISHNAN",
+  title: "FORMER DIRECTOR & ADVISOR OF AICTE INDIA", 
+  image: rameshImg, 
+  gradientColors: "from-orange-400 via-red-500 to-pink-500"
+},
+{
+  id: 4,
+  name: "DR KUNCHERIA P ISAAC",
+  title: "EDUCATOR AND FORMER VICE CHANCELLOR OF APJKTU",
+  image: kuncheriaImg,
+  gradientColors: "from-pink-400 via-purple-500 to-indigo-600"
+},
+{
+  id: 5,
+  name: "DR P A FAZAL GHAFOOR",
+  title: "PRESIDENT OF MES",
+  image: fazalImg, 
+  gradientColors: "from-indigo-400 via-purple-500 to-pink-600"
+}
 ];
 
 const GuestCard = ({ guest, index }) => (
-  <div className="relative h-[500px] overflow-hidden shadow-2xl group cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105">
+  <div className="relative h-[400px] overflow-hidden shadow-2xl group cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105">
     {/* Background gradient matching the image */}
     <div className={`absolute inset-0 bg-gradient-to-br ${guest.gradientColors} opacity-90 transition-opacity duration-500 group-hover:opacity-70`} />
     
@@ -143,9 +151,9 @@ const Guests = () => {
         </p>
       </div>
 
-      {/* Guests Grid - Horizontal Layout */}
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Guests Grid - Single Row Layout */}
+      <div className="container mx-auto px-4 max-w-[1400px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
           {guestData.map((guest, index) => (
             <GuestCard key={guest.id} guest={guest} index={index} />
           ))}
