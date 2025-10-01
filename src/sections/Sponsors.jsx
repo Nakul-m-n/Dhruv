@@ -26,7 +26,7 @@ const mainSponsors = [
   { name: "ISRO", image: isro },
   { name: "Flora", image: flora },
   { name: "Ife", image: ife },
-  {name :"unknown"}
+  // {name :"unknown"}
 ]; // Top tier sponsors
 
 const otherSponsors = [
@@ -35,8 +35,8 @@ const otherSponsors = [
   { name: "DIC", image: dic },
   { name: "Kamco", image: kamco },
   { name: "CMRL", image: cmrl },
-  {name :"unknown"},
-  {name:"unknown2"}
+  // {name :"unknown"},
+  // {name:"unknown2"}
 ]; // Additional sponsors
 
 const SponsorCard = ({ sponsor, idx, isMain = false }) => (

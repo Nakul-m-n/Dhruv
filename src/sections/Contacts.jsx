@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Instagram } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ export default function ContactSection() {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -17,13 +19,48 @@ export default function ContactSection() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    setSending(true);
+    setError('');
+
+    try {
+      const response = await fetch('https://formsubmit.co/dhruvmescet2025@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _captcha: 'false'
+        })
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        }, 3000);
+      } else {
+        setError('Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      setError('Failed to send message. Please try again.');
+      console.error('Error:', err);
+    } finally {
+      setSending(false);
+    }
   };
 
   const contacts = [
@@ -39,7 +76,6 @@ export default function ContactSection() {
 
   return (
     <section className="relative py-8 sm:py-12 md:py-16 px-3 sm:px-4 min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-800">
-      {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
@@ -47,7 +83,6 @@ export default function ContactSection() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10 w-full">
-        {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 px-2">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">Get In Touch</h2>
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto px-2">
@@ -56,7 +91,6 @@ export default function ContactSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
-          {/* Contact Info Section 1 - Team Contacts */}
           <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl hover:bg-white/10 transition-all duration-300">
             <div className="space-y-4 sm:space-y-6">
               <div>
@@ -66,7 +100,6 @@ export default function ContactSection() {
                 </p>
               </div>
 
-              {/* Contact Information Grid */}
               <div className="flex flex-col sm:flex-row items-start gap-4 group">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-all duration-300">
                   <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
@@ -74,7 +107,6 @@ export default function ContactSection() {
                 
                 <div className="flex-1 w-full">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    {/* Left Column - Names */}
                     <div className="space-y-2">
                       <div className="text-xs sm:text-sm font-semibold text-gray-400 mb-2 sm:mb-3">Team Members</div>
                       {contacts.map((contact, index) => (
@@ -84,7 +116,6 @@ export default function ContactSection() {
                       ))}
                     </div>
                     
-                    {/* Right Column - Phone Numbers */}
                     <div className="space-y-2">
                       <div className="text-xs sm:text-sm font-semibold text-gray-400 mb-2 sm:mb-3">Contact Numbers</div>
                       {contacts.map((contact, index) => (
@@ -99,7 +130,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Contact Info Section 2 - Location & Email */}
           <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl hover:bg-white/10 transition-all duration-300">
             <div className="space-y-6 sm:space-y-8">
               <div>
@@ -110,18 +140,16 @@ export default function ContactSection() {
               </div>
 
               <div className="space-y-4 sm:space-y-6">
-                {/* Email Section */}
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-all duration-300">
                     <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1 text-sm sm:text-base">Email</h4>
-                    <p className="text-sm sm:text-base text-gray-300 break-all">contact@mescet.edu</p>
+                    <p className="text-sm sm:text-base text-gray-300 break-all">dhruvmescet2025@gmail.com</p>
                   </div>
                 </div>
 
-                {/* Location Section */}
                 <div className="flex items-start gap-3 sm:gap-4 group">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-all duration-300">
                     <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-pink-400" />
@@ -133,35 +161,32 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              {/* Social Media */}
               <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10">
                 <h4 className="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">Follow Us</h4>
                 <div className="flex gap-3 sm:gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 backdrop-blur-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
-                    <span className="text-white font-bold text-xs sm:text-sm">Tw</span>
-                  </div>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
-                    <span className="text-white font-bold text-xs sm:text-sm">Li</span>
-                  </div>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 backdrop-blur-lg bg-gradient-to-br from-pink-500/20 to-blue-500/20 border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 transition-transform cursor-pointer">
-                    <span className="text-white font-bold text-xs sm:text-sm">In</span>
-                  </div>
+                  <a 
+                    href="https://www.instagram.com/dhruv_fest" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 sm:w-12 sm:h-12 backdrop-blur-lg bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-white/20 rounded-lg flex items-center justify-center hover:scale-110 hover:from-pink-500/30 hover:to-purple-500/30 transition-all cursor-pointer"
+                  >
+                    <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Contact Form - Full Width at Bottom */}
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl hover:bg-white/10 transition-all duration-300">
           {submitted ? (
-              <div className="flex flex-col items-center justify-center h-full text-center py-8 sm:py-12">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 backdrop-blur-lg bg-gradient-to-br from-green-500/30 to-emerald-500/30 border border-green-400/30 rounded-full flex items-center justify-center mb-4 sm:mb-6 animate-pulse">
-                  <Send className="w-8 h-8 sm:w-10 sm:h-10 text-green-400" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-2 sm:mb-3">Message Sent!</h3>
-                <p className="text-sm sm:text-base text-gray-300">We'll get back to you soon.</p>
+            <div className="flex flex-col items-center justify-center h-full text-center py-8 sm:py-12">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 backdrop-blur-lg bg-gradient-to-br from-green-500/30 to-emerald-500/30 border border-green-400/30 rounded-full flex items-center justify-center mb-4 sm:mb-6 animate-pulse">
+                <Send className="w-8 h-8 sm:w-10 sm:h-10 text-green-400" />
               </div>
+              <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-2 sm:mb-3">Message Sent!</h3>
+              <p className="text-sm sm:text-base text-gray-300">We'll get back to you soon.</p>
+            </div>
           ) : (
             <div>
               <div className="text-center mb-6 sm:mb-8">
@@ -230,21 +255,27 @@ export default function ContactSection() {
                   />
                 </div>
 
+                {error && (
+                  <div className="md:col-span-2 text-red-400 text-sm text-center bg-red-500/10 border border-red-500/20 rounded-lg py-2">
+                    {error}
+                  </div>
+                )}
+
                 <div className="md:col-span-2">
                   <button
                     onClick={handleSubmit}
-                    className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-500/50 hover:scale-105 text-sm sm:text-base"
+                    disabled={sending}
+                    className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-500/50 hover:scale-105 text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
-                    Send Message
+                    {sending ? 'Sending...' : 'Send Message'}
                     <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
                 </div>
               </div>
             </div>
           )}
-          </div>
         </div>
-      
+      </div>
     </section>
   );
 }

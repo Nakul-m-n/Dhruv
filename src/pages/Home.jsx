@@ -9,6 +9,7 @@ import About from "../sections/About";
 import Footer from "../components/Footer";
 import IVA from "../assets/images/eva.png";
 import ContactSection from "../sections/Contacts";
+import StarAppearancesSection from "../sections/StarAppearances";
 
 const Home = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -79,6 +80,9 @@ const Home = () => {
         <section id="events">
           <Carousel />
         </section>
+         <section id="stars">
+          <StarAppearancesSection/>
+        </section>
         <section id="guests">
           <Guests />
         </section>
@@ -94,6 +98,7 @@ const Home = () => {
         <section id="contact">
           <ContactSection/>
         </section>
+       
       </main>
 
       <Footer />
