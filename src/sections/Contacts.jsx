@@ -100,32 +100,36 @@ export default function ContactSection() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-start gap-4 group">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-white/20 transition-all duration-300">
-                  <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
-                </div>
-                
-                <div className="flex-1 w-full">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div className="space-y-2">
-                      <div className="text-xs sm:text-sm font-semibold text-gray-400 mb-2 sm:mb-3">Team Members</div>
-                      {contacts.map((contact, index) => (
-                        <div key={index} className="py-2 px-3 backdrop-blur-lg bg-white/5 border border-white/10 rounded-lg">
-                          <span className="text-sm sm:text-base text-gray-300 font-medium">{contact.name}</span>
+              <div className="space-y-3 sm:space-y-4">
+                {contacts.map((contact, index) => (
+                  <div 
+                    key={index} 
+                    className="group relative backdrop-blur-lg bg-gradient-to-r from-white/5 to-white/10 border border-white/10 rounded-xl p-3 sm:p-4 hover:from-white/10 hover:to-white/15 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 flex-1 min-w-0">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-white/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:from-purple-500/30 group-hover:to-blue-500/30 transition-all duration-300">
+                          <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 group-hover:rotate-12 transition-transform duration-300" />
                         </div>
-                      ))}
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <div className="text-xs sm:text-sm font-semibold text-gray-400 mb-2 sm:mb-3">Contact Numbers</div>
-                      {contacts.map((contact, index) => (
-                        <div key={index} className="py-2 px-3 backdrop-blur-lg bg-white/5 border border-white/10 rounded-lg">
-                          <span className="text-xs sm:text-sm text-white font-mono break-all">{contact.phone}</span>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm sm:text-base font-semibold text-white mb-0.5 truncate">{contact.name}</h4>
+                          <a 
+                            href={`tel:${contact.phone}`}
+                            className="text-xs sm:text-sm text-gray-300 font-mono hover:text-blue-400 transition-colors duration-200 block truncate"
+                          >
+                            {contact.phone}
+                          </a>
                         </div>
-                      ))}
+                      </div>
+                      <a
+                        href={`tel:${contact.phone}`}
+                        className="w-8 h-8 sm:w-10 sm:h-10 backdrop-blur-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/20 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 flex-shrink-0"
+                      >
+                        <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400" />
+                      </a>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -146,7 +150,12 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1 text-sm sm:text-base">Email</h4>
-                    <p className="text-sm sm:text-base text-gray-300 break-all">dhruvmescet2025@gmail.com</p>
+                    <a 
+                      href="mailto:dhruvmescet2025@gmail.com"
+                      className="text-sm sm:text-base text-gray-300 hover:text-purple-400 transition-colors duration-200 break-all"
+                    >
+                      dhruvmescet2025@gmail.com
+                    </a>
                   </div>
                 </div>
 
