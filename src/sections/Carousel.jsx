@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { X, Clock, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { X, Clock, Calendar, MapPin, ExternalLink, Users, Award, Coffee, Trophy, Code, Lightbulb, Target, Presentation } from "lucide-react";
+
+const hackathonImage = "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=400&fit=crop";
 
 const scheduleData = [
   {
@@ -14,16 +16,86 @@ const scheduleData = [
     },
     events: [
       {
-        time: "12:00 PM (Oct 9) - 12:00 AM (Oct 10)",
-        title: "Hackathon",
-        description: "24-hour coding marathon to solve real-world problems with innovative solutions",
-        venue: "Tech Hub",
+        time: "01:00 PM (Oct 9) - 01:00 PM (Oct 10)",
+        title: "CodeRevolt 2025 - Hackathon",
+        description: "A 24-Hour Software & AI Hackathon. 'Innovate. Code. Revolt.' Design and develop real-world software and AI solutions with mentor guidance and technical support.",
+        venue: "MES College of Engineering and Technology, Kunnukara",
         hasRegister: true,
         registerLink: "https://makemypass.com/event/hackathon-2",
-        image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=400&fit=crop"
+        image: hackathonImage,
+        detailedInfo: {
+          about: "CodeRevolt is the flagship 24-hour Software and AI Hackathon of Dhruv Tech Fest, hosted by MES College of Engineering and Technology, Kunnukara. It challenges participants to design and develop real-world software and AI solutions within 24 hours of intense coding, creativity, and teamwork. Throughout the event, participants will receive mentor guidance, access to resources, and an engaging atmosphere that fosters collaboration and innovation.",
+          highlights: [
+            "Focused on Software & AI innovations",
+            "Team-based competition (up to 3 members per team)",
+            "Problem statements released 2 days before the hackathon",
+            "Mentorship & technical support throughout the event",
+            "Cash prizes worth ₹20,000+",
+            "Presentations before expert judges",
+            "Certificates for all participants"
+          ],
+          schedule: [
+            {
+              day: "Day 1 – October 9, 2025",
+              events: [
+                "🕐 1:00 PM – Inauguration & Instructions",
+                "🕜 1:30 PM – Hackathon Kickoff / Development Phase Begins",
+                "🌙 2:00 PM – 12:00 AM – Continuous Coding, Mentor Support & Refreshments",
+                "🍽️ Dinner Provided",
+                "🌅 Midnight Check-in – Progress Monitoring"
+              ]
+            },
+            {
+              day: "Day 2 – October 10, 2025",
+              events: [
+                "☀️ 12:00 AM – 8:00 AM – Overnight Development & Debugging",
+                "🍳 Breakfast Provided",
+                "🕗 8:00 AM – 9:00 AM – Final Testing & Refinement",
+                "🕘 9:00 AM – 12:00 PM – Project Presentations (3 min demo + 2 min Q&A)",
+                "🕛 12:00 PM – 12:30 PM – Judges' Evaluation & Discussion",
+                "🏆 12:30 PM – 1:00 PM – Winner Announcement & Closing Ceremony"
+              ]
+            }
+          ],
+          foodRefreshments: [
+            "🍽️ Dinner will be provided on October 9",
+            "🍳 Breakfast will be provided on October 10",
+            "🥤 Light refreshments and beverages throughout the event",
+            "🏪 College canteen remains open for additional food/snacks"
+          ],
+          judgingCriteria: [
+            "💡 Innovation & Creativity",
+            "⚙️ Technical Implementation",
+            "🌍 Practical Impact & Relevance",
+            "🗣️ Presentation & Demonstration"
+          ],
+          rewards: {
+            allParticipants: [
+              "Certificate of Participation",
+              "Mentorship & Expert Interaction",
+              "Networking opportunities through Dhruv Tech Fest"
+            ],
+            topTeams: [
+              "Cash Prizes Worth ₹20,000+",
+              "Trophies & Certificates",
+              "Recognition on Dhruv Tech Fest Platforms"
+            ]
+          },
+          registration: {
+            expectedTeams: "20 Teams",
+            teamSize: "Up to 3 participants",
+            fee: "₹300 per team",
+            mode: "Onsite at MES College of Engineering and Technology"
+          },
+          eligibility: [
+            "Open to students from all engineering and technology disciplines",
+            "Teams must work on assigned problem statements",
+            "Only Software and AI-based projects are accepted"
+          ]
+        }
       },
       {
-        time: "12:30 PM - 3:00 PM",
+        time: "01:30 PM - 01:30 PM",
         title: "Ideathon",
         description: "Collaborative innovation challenge to pitch creative ideas and solutions",
         venue: "Innovation Hub",
@@ -38,7 +110,7 @@ const scheduleData = [
         venue: "Various Halls",
         hasRegister: true,
         registerLink: "https://workshop-register.example.com",
-        details: ["Robotics", "Web Design", "Construction", "Mechanical"],
+        details: ["Arduino", "Web Design"],
         image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=400&fit=crop"
       },
       {
@@ -83,6 +155,15 @@ const scheduleData = [
         venue: "Exhibition Ground",
         details: ["ISRO Expo", "School Polytechnic Expo"],
         image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&h=400&fit=crop"
+      },
+      {
+        time: "Full Day",
+        title: "Online Gaming",
+        description: "Competitive gaming tournaments with exciting prizes",
+        venue: "Gaming Zone",
+        hasRegister: true,
+        registerLink: "https://gaming-register.example.com",
+        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=400&fit=crop"
       }
     ]
   },
@@ -103,23 +184,16 @@ const scheduleData = [
         description: "Stunning runway displays featuring talented designers and models",
         venue: "Outdoor Stage",
         image: "https://png.pngtree.com/background/20230606/original/pngtree-fashion-show-with-models-on-the-runway-picture-image_2882850.jpg"
-      },
-      {
-        time: "11:00 AM - 4:00 PM",
-        title: "Online Gaming",
-        description: "Competitive gaming tournaments with exciting prizes",
-        venue: "Gaming Zone",
-        hasRegister: true,
-        registerLink: "https://gaming-register.example.com",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=400&fit=crop"
       }
     ]
   }
 ];
 
-// Small Event Detail Modal
+// Event Detail Modal with Complete Information
 const EventDetailModal = ({ isOpen, onClose, event }) => {
   if (!isOpen || !event) return null;
+
+  const hasDetailedInfo = event.detailedInfo;
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
@@ -128,9 +202,9 @@ const EventDetailModal = ({ isOpen, onClose, event }) => {
         onClick={onClose}
       />
       
-      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl max-w-md w-full border border-cyan-500/40 shadow-2xl overflow-hidden">
+      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] border border-cyan-500/40 shadow-2xl overflow-hidden">
         {event.image && (
-          <div className="relative w-full h-48 border-b-2 border-cyan-500/40">
+          <div className="relative w-full h-64 border-b-2 border-cyan-500/40">
             <img 
               src={event.image} 
               alt={event.title}
@@ -140,35 +214,185 @@ const EventDetailModal = ({ isOpen, onClose, event }) => {
           </div>
         )}
         
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-4">
-            <h4 className="text-2xl font-bold text-cyan-100">{event.title}</h4>
-            <button
-              onClick={onClose}
-              className="p-1.5 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 transition-all"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          <div className="space-y-3 mb-6">
-            <div className="flex items-center text-cyan-300/80 text-sm">
-              <Clock className="w-4 h-4 mr-2" />
-              {event.time}
+        <div className="overflow-y-auto max-h-[calc(90vh-16rem)] custom-scrollbar">
+          <div className="p-8">
+            <div className="flex items-start justify-between mb-6">
+              <h4 className="text-3xl font-bold text-cyan-100">{event.title}</h4>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 transition-all"
+              >
+                <X className="w-6 h-6" />
+              </button>
             </div>
 
-            {event.venue && (
-              <div className="flex items-center text-cyan-400/80 text-sm">
-                <MapPin className="w-4 h-4 mr-2" />
-                {event.venue}
+            <div className="space-y-4 mb-6">
+              <div className="flex items-center text-cyan-300/80">
+                <Clock className="w-5 h-5 mr-3" />
+                <span className="text-base">{event.time}</span>
+              </div>
+
+              {event.venue && (
+                <div className="flex items-center text-cyan-400/80">
+                  <MapPin className="w-5 h-5 mr-3" />
+                  <span className="text-base">{event.venue}</span>
+                </div>
+              )}
+
+              {event.description && (
+                <p className="text-slate-300 text-base leading-relaxed">{event.description}</p>
+              )}
+            </div>
+
+            {/* Detailed Info Section for Hackathon */}
+            {hasDetailedInfo && (
+              <div className="space-y-8 mt-8">
+                {/* About Section */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-3 flex items-center">
+                    <Lightbulb className="w-5 h-5 mr-2" />
+                    About CodeRevolt
+                  </h5>
+                  <p className="text-slate-300 leading-relaxed">{event.detailedInfo.about}</p>
+                </div>
+
+                {/* Highlights */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-4 flex items-center">
+                    <Target className="w-5 h-5 mr-2" />
+                    Highlights
+                  </h5>
+                  <ul className="space-y-2">
+                    {event.detailedInfo.highlights.map((highlight, i) => (
+                      <li key={i} className="text-slate-300 flex items-start">
+                        <span className="text-cyan-400 mr-2">•</span>
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Event Schedule */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-4 flex items-center">
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Event Schedule
+                  </h5>
+                  {event.detailedInfo.schedule.map((daySchedule, i) => (
+                    <div key={i} className="mb-4">
+                      <h6 className="text-lg font-semibold text-cyan-300 mb-2">{daySchedule.day}</h6>
+                      <ul className="space-y-1.5 ml-4">
+                        {daySchedule.events.map((scheduleEvent, j) => (
+                          <li key={j} className="text-slate-300 text-sm">{scheduleEvent}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Food & Refreshments */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-4 flex items-center">
+                    <Coffee className="w-5 h-5 mr-2" />
+                    Food & Refreshments
+                  </h5>
+                  <ul className="space-y-2">
+                    {event.detailedInfo.foodRefreshments.map((item, i) => (
+                      <li key={i} className="text-slate-300">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Judging Criteria */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-4 flex items-center">
+                    <Presentation className="w-5 h-5 mr-2" />
+                    Judging Criteria
+                  </h5>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {event.detailedInfo.judgingCriteria.map((criteria, i) => (
+                      <div key={i} className="bg-cyan-500/10 rounded-lg p-3 border border-cyan-500/30">
+                        <p className="text-slate-300 text-sm">{criteria}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Rewards & Recognition */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-4 flex items-center">
+                    <Trophy className="w-5 h-5 mr-2" />
+                    Rewards & Recognition
+                  </h5>
+                  <div className="space-y-4">
+                    <div>
+                      <h6 className="text-lg font-semibold text-cyan-300 mb-2">🎖️ All Participants Receive:</h6>
+                      <ul className="space-y-1 ml-4">
+                        {event.detailedInfo.rewards.allParticipants.map((reward, i) => (
+                          <li key={i} className="text-slate-300 text-sm flex items-start">
+                            <span className="text-cyan-400 mr-2">•</span>
+                            {reward}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h6 className="text-lg font-semibold text-cyan-300 mb-2">🏆 Top Teams Win:</h6>
+                      <ul className="space-y-1 ml-4">
+                        {event.detailedInfo.rewards.topTeams.map((reward, i) => (
+                          <li key={i} className="text-slate-300 text-sm flex items-start">
+                            <span className="text-cyan-400 mr-2">•</span>
+                            {reward}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Registration Details */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-4 flex items-center">
+                    <Users className="w-5 h-5 mr-2" />
+                    Registration Details
+                  </h5>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-cyan-500/10 rounded-lg p-4 border border-cyan-500/30">
+                      <p className="text-cyan-300 text-sm font-medium mb-1">Expected Teams</p>
+                      <p className="text-slate-200 text-lg font-bold">{event.detailedInfo.registration.expectedTeams}</p>
+                    </div>
+                    <div className="bg-cyan-500/10 rounded-lg p-4 border border-cyan-500/30">
+                      <p className="text-cyan-300 text-sm font-medium mb-1">Team Size</p>
+                      <p className="text-slate-200 text-lg font-bold">{event.detailedInfo.registration.teamSize}</p>
+                    </div>
+                    <div className="bg-cyan-500/10 rounded-lg p-4 border border-cyan-500/30">
+                      <p className="text-cyan-300 text-sm font-medium mb-1">Registration Fee</p>
+                      <p className="text-slate-200 text-lg font-bold">{event.detailedInfo.registration.fee}</p>
+                    </div>
+                    <div className="bg-cyan-500/10 rounded-lg p-4 border border-cyan-500/30">
+                      <p className="text-cyan-300 text-sm font-medium mb-1">Mode</p>
+                      <p className="text-slate-200 text-lg font-bold">{event.detailedInfo.registration.mode}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Eligibility */}
+                <div className="bg-slate-800/40 rounded-lg p-6 border border-cyan-500/20">
+                  <h5 className="text-xl font-bold text-cyan-200 mb-4">Eligibility</h5>
+                  <ul className="space-y-2">
+                    {event.detailedInfo.eligibility.map((item, i) => (
+                      <li key={i} className="text-slate-300 flex items-start">
+                        <span className="text-cyan-400 mr-2">•</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
 
-            {event.description && (
-              <p className="text-slate-300 text-sm leading-relaxed">{event.description}</p>
-            )}
-
-            {event.details && (
+            {/* Simple event details */}
+            {!hasDetailedInfo && event.details && (
               <div>
                 <p className="text-cyan-200/80 text-sm font-medium mb-2">Includes:</p>
                 <div className="flex flex-wrap gap-2">
@@ -184,23 +408,25 @@ const EventDetailModal = ({ isOpen, onClose, event }) => {
               </div>
             )}
           </div>
+        </div>
 
+        <div className="sticky bottom-0 bg-gradient-to-t from-gray-900 to-gray-900/95 p-6 border-t border-cyan-500/30">
           {event.hasRegister && (
             <a
               href={event.registerLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+              className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-lg font-semibold text-base bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
             >
               Register Now
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-5 h-5" />
             </a>
           )}
 
           {!event.hasRegister && (
             <button
               onClick={onClose}
-              className="w-full py-3 px-4 rounded-lg font-semibold text-sm bg-gray-700/50 hover:bg-gray-700/70 text-gray-300 border border-gray-600/50 transition-all duration-300"
+              className="w-full py-4 px-6 rounded-lg font-semibold text-base bg-gray-700/50 hover:bg-gray-700/70 text-gray-300 border border-gray-600/50 transition-all duration-300"
             >
               Close
             </button>
@@ -288,7 +514,7 @@ const Modal = ({ isOpen, onClose, day }) => {
         />
         
         <div className="relative bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-xl border border-cyan-500/40 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
-          <div className="sticky top-0 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-sm border-b border-cyan-500/30 p-6 flex items-center justify-between">
+          <div className="sticky top-0 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-sm border-b border-cyan-500/30 p-6 flex items-center justify-between z-10">
             <div>
               <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                 {day.day}

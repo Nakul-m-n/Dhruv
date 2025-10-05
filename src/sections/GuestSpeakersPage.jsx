@@ -51,15 +51,13 @@ const GuestCard = ({ guest, index }) => (
     <div className={`absolute inset-0 bg-gradient-to-br ${guest.gradientColors} opacity-90 transition-opacity duration-500 group-hover:opacity-70`} />
     
     {/* Image section - full height, aligned to borders */}
-    <div className="relative h-full p-2">
+    <div className="relative h-full p-0 sm:p-2">
       <img 
         src={guest.image} 
         alt={guest.name}
-        className={`w-full h-full object-contain ${
-          index % 2 === 0 ? 'object-left-bottom' : 'object-right-bottom'
-        }`}
+        className="w-full h-full object-cover sm:object-contain"
         style={{
-          objectPosition: index % 2 === 0 ? 'left bottom' : 'right bottom'
+          objectPosition: 'center bottom'
         }}
         onError={(e) => {
           // Fallback to placeholder if image fails to load
