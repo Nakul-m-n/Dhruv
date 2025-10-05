@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Logo from "../assets/images/logo.png";
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -74,7 +73,7 @@ export default function Home() {
       {/* Logo */}
       <div className="relative z-10 mb-4 sm:mb-6 md:mb-8 flex justify-center px-4">
         <img
-          src={Logo}
+          src={"/images/logo.png"}
           alt="Logo"
           className="w-40 sm:w-52 md:w-72 lg:w-96 h-auto transition-transform duration-300 hover:scale-105"
         />

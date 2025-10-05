@@ -7,7 +7,6 @@ import Guests from "../sections/GuestSpeakersPage"; // Add this import
 import Sponsors from "../sections/Sponsors";
 import About from "../sections/About";
 import Footer from "../components/Footer";
-import IVA from "../assets/images/eva.png";
 import ContactSection from "../sections/Contacts";
 import StarAppearancesSection from "../sections/StarAppearances";
 
@@ -57,7 +56,7 @@ const Home = () => {
             left: "-8px",
           }}
         >
-          <img src={IVA} alt="EVA" className="w-10 h-10 object-contain" />
+          <img src={"/images/eva.png"} alt="EVA" className="w-10 h-10 object-contain" />
           {isScrolling && (
             <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0.5 h-2 bg-gradient-to-t from-orange-500 to-yellow-300 rounded-full animate-pulse"></div>
           )}

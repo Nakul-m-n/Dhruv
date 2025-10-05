@@ -1,46 +1,39 @@
 import React from "react";
 
-// Import your guest images at the top
-import rajeevImg from "../assets/images/prajeev.png";
-import hibiImg from "../assets/images/hibi.png"; 
-import rameshImg from "../assets/images/unikrishnan.png";
-import kuncheriaImg from "../assets/images/isacc.png";
-import fazalImg from "../assets/images/fazal.png"
-
 const guestData = [
  {
   id: 1,
   name: "SRI ADV P RAJEEV",
   title: "HON'BLE MINISTER OF INDUSTRIES, LAW AND COURT, KERALA",
-  image: rajeevImg, 
+  image: "/images/prajeev.png", 
   gradientColors: "from-green-400 via-blue-500 to-purple-600"
 },
 {
   id: 2,
   name: "SRI HIBI EDEN", 
   title: "HON'BLE MEMBER OF PARLIAMENT, ERNAKULAM",
-  image: hibiImg, 
+  image: "/images/hibi.png", 
   gradientColors: "from-purple-400 via-pink-500 to-red-500"
 },
 {
   id: 3,
   name: "DR RAMESH UNNIKRISHNAN",
   title: "FORMER DIRECTOR & ADVISOR OF AICTE INDIA", 
-  image: rameshImg, 
+  image: "/images/unikrishnan.png", 
   gradientColors: "from-orange-400 via-red-500 to-pink-500"
 },
 {
   id: 4,
   name: "DR KUNCHERIA P ISAAC",
   title: "EDUCATOR AND FORMER VICE CHANCELLOR OF APJKTU",
-  image: kuncheriaImg,
+  image: "/images/isacc.png",
   gradientColors: "from-pink-400 via-purple-500 to-indigo-600"
 },
 {
   id: 5,
   name: "DR P A FAZAL GHAFOOR",
   title: "PRESIDENT OF MES",
-  image: fazalImg, 
+  image: "/images/fazal.png", 
   gradientColors: "from-indigo-400 via-purple-500 to-pink-600"
 }
 ];

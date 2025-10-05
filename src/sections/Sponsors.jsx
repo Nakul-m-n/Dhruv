@@ -1,40 +1,20 @@
 import React from "react";
-import oberonimg from "../assets/images/sponsors/oberon.png"
-import isroimg from "../assets/images/sponsors/isro.png"
-import floraimg from "../assets/images/sponsors/flora.png"
-import ifeimg from "../assets/images/sponsors/ife.png"
-import ksumimg from "../assets/images/sponsors/ksum1.png"
-import fragomenimg from  "../assets/images/sponsors/fragomen.png"
-import dicimg from  "../assets/images/sponsors/DIC.png"
-import kamcoimg from  "../assets/images/sponsors/kamco.png"
-import cmrlimg from  "../assets/images/sponsors/cmrl1.png"
-
-// Mock sponsor images - replace these with your actual imports
-const oberon = oberonimg;
-const isro = isroimg;
-const flora = floraimg;
-const ife = ifeimg;
-const ksum = ksumimg;
-const fragomen = fragomenimg;
-const dic = dicimg;
-const kamco = kamcoimg;
-const cmrl = cmrlimg;
 
 // Split sponsors into two categories with image paths
 const mainSponsors = [
-  { name: "OberonMall", image: oberon },
-  { name: "ISRO", image: isro },
-  { name: "Flora", image: flora },
-  { name: "Ife", image: ife },
+  { name: "OberonMall", image: "/images/sponsors/oberon.png" },
+  { name: "ISRO", image: "/images/sponsors/Isro.png" },
+  { name: "Flora", image: "/images/sponsors/flora.png" },
+  { name: "Ife", image: "/images/sponsors/ife.png" },
   // {name :"unknown"}
 ]; // Top tier sponsors
 
 const otherSponsors = [
-  { name: "Kerala Startup Mission", image: ksum },
-  { name: "fragomen", image: fragomen },
-  { name: "DIC", image: dic },
-  { name: "Kamco", image: kamco },
-  { name: "CMRL", image: cmrl },
+  { name: "Kerala Startup Mission", image: "/images/sponsors/ksum1.png" },
+  { name: "Fragomen", image: "/images/sponsors/fragomen.png" },
+  { name: "DIC", image: "/images/sponsors/DIC.png" },
+  { name: "Kamco", image: "/images/sponsors/kamco.png" },
+  { name: "CMRL", image: "/images/sponsors/cmrl1.png" },
   // {name :"unknown"},
   // {name:"unknown2"}
 ]; // Additional sponsors

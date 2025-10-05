@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Logo from "../assets/images/logo.png";
 
 const NavbarComponent = () => {
   const [expanded, setExpanded] = useState(false);
@@ -25,7 +24,7 @@ const NavbarComponent = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2.5">
           <a href="#home" className="flex items-center">
             <img
-              src={Logo}
+              src={"/images/logo.png"}
               alt="Logo"
               className="w-32 h-auto rounded-md transition-transform duration-300 hover:scale-105"
             />

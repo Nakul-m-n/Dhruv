@@ -1,6 +1,4 @@
 import React from 'react';
-import eagle from "../assets/images/Eagle.jpg"
-import sayip from "../assets/images/sayip.jpg"
 
 export default function StarAppearancesSection() {
   const guests = [
@@ -8,14 +6,14 @@ export default function StarAppearancesSection() {
       id: 1,
       name: 'Eagle Gaming',
       title: 'Gamer',
-      image: eagle,
+      image: "/images/Eagle.jpg",
       description: 'Professional esports player and content creator'
     },
     {
       id: 2,
       name: 'SayipOp ',
       title: 'Gamer',
-      image: sayip,
+      image: "/images/sayip.jpg",
       description: 'Professional esports player and content creator'
     }
   ];
